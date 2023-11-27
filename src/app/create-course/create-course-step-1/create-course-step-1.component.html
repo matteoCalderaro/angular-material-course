@@ -1,7 +1,85 @@
-<div [formGroup]="form" class="course-details-form">
+<form [formGroup]="form" class="course-details-form">
+    <!-- INPUT -->
+    <mat-form-field floatLabel="auto" >
+
+        <mat-label>Course title</mat-label>
+        <input matInput formControlName="title" #title>
+        <!-- <span matPrefix >+39</span>
+        <span matSuffix>.00</span> -->
+        
+        <mat-hint align="end">
+            {{title.value.length}} / 60
+        </mat-hint>
+        <mat-error *ngIf="courseTitle.errors?.minlength">
+            Mona
+        </mat-error>
+
+    </mat-form-field>
+
+    <!-- RADIO BUTTON doens't have to be wrapped in a mat-form-field -->
+    <!-- used only when there are a few options known up front -->
+    <mat-radio-group class="course-type" formControlName="courseType">
+
+        <mat-radio-button disabled value="free">Free</mat-radio-button>
+        <mat-radio-button value="premium">Premium</mat-radio-button>
+
+    </mat-radio-group>
+
+    <!-- SELECT DROPDOWN BOX -->
+    <mat-form-field appearance="outline">
+        <mat-label>category</mat-label>
+        <mat-select formControlName="category" placeholder="Select category">
+            <!-- <mat-option>None</mat-option> -->
+
+            <mat-optgroup label="Beginners">
+                <mat-option>None</mat-option>
+                <mat-option value="newtoprogramming">New to Programming</mat-option>
+                <mat-option value="newjavascript">New to Javascript</mat-option>
+                <mat-option value="newangular">New to Angular</mat-option>
+            </mat-optgroup>
+
+            <mat-option value="INTERMEDIATE">Intermediate</mat-option>
+            <mat-option value="ADVANCED">Advanced</mat-option>
+        </mat-select>
+
+    </mat-form-field>
+
+    <!-- DATE PICKER -->
+    <mat-form-field appearance="outline">
+
+        <mat-label>Released date</mat-label>
+        <input matInput formControlName="releasedAt"  [matDatepicker]="releasedAtPicker">
+
+        <mat-datepicker-toggle matSuffix [for]="releasedAtPicker"></mat-datepicker-toggle>
+
+        <mat-datepicker #releasedAtPicker [dateClass]="dateClass"></mat-datepicker>
+
+    </mat-form-field>
+
+    <!-- CHECKBOX -->
+    <mat-checkbox formControlName="downloadsAllowed" color="primary">
+        Download allowed?
+    </mat-checkbox>
+
+    <!-- TEXT AREA -->
+    <mat-form-field  appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput  
+            formControlName="longDescription" 
+            cdkTextareaAutosize
+            [cdkAutosizeMinRows]="5"
+            [cdkAutosizeMaxRows]="10"
+            ></textarea>
+    </mat-form-field>
 
 
+
+</form>
+<div>
+    {{form.valid}}
 </div>
-
+<div>
+    CAtegory: {{form.controls['category'].value}}
+</div>
 
 

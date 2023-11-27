@@ -1,9 +1,9 @@
 
 .edit-course-form {
-  min-width: 300px;
+  width: 600px;
 }
 
-mat-dialog-content {
+.mat-content {
   display: flex;
   flex-direction: column;
 }

@@ -3,67 +3,73 @@ import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource} from '
 import {FlatTreeControl, NestedTreeControl} from '@angular/cdk/tree';
 
 interface CourseNode {
-  name: string;
-  children?: CourseNode[];
+    name: string;
+    children?: CourseNode[];
 }
 
 const TREE_DATA: CourseNode[] = [
-  {
-    name: 'Angular For Beginners',
-    children: [
-      {
-        name: 'Introduction to Angular'
-      },
-      {
-        name: 'Angular Component @Input()'
-      },
-      {
-        name: 'Angular Component @Output()'
-      }
-    ],
-  },
-  {
-    name: 'Angular Material In Depth',
-    children: [
-      {
-        name: 'Introduction to Angular Material',
+    {
+        name: 'Angular For Beginners',
         children: [
-          {
-            name: 'Form Components'
-          },
-          {
-            name: 'Navigation and Containers'
-          }
+            {
+                name: 'Introduction to Angular'
+            },
+            {
+                name: 'Angular Component @Input()'
+            },
+            {
+                name: 'Angular Component @Output()'
+            }
         ],
-      },
-      {
-        name: 'Advanced Angular Material',
+    },
+    {
+        name: 'Angular Material In Depth',
         children: [
-          {
-            name: 'Custom Themes'
-          },
-          {
-            name: 'Tree Components'
-          }
+            {
+                name: 'Introduction to Angular Material',
+                children: [
+                    {
+                        name: 'Form Components'
+                    },
+                    {
+                        name: 'Navigation and Containers'
+                    }
+                ],
+            },
+            {
+                name: 'Advanced Angular Material',
+                children: [
+                    {
+                        name: 'Custom Themes'
+                    },
+                    {
+                        name: 'Tree Components'
+                    }
+                ],
+            },
         ],
-      },
-    ],
-  },
+    },
 ];
 
 @Component({
-  selector: 'tree-demo',
-  templateUrl: 'tree-demo.component.html',
-  styleUrls: ['tree-demo.component.scss']
+    selector: 'tree-demo',
+    templateUrl: 'tree-demo.component.html',
+    styleUrls: ['tree-demo.component.scss']
 })
 export class TreeDemoComponent implements OnInit {
+    
+    dataSource = new MatTreeNestedDataSource<CourseNode>();
+    treeControl = new NestedTreeControl<CourseNode>(node => node.children);
+    
+    constructor() {this.dataSource.data = TREE_DATA }
+    
+    ngOnInit() {}
 
-
-  ngOnInit() {
-
-
-  }
-
+    hasChild = (_: number, node: CourseNode) => {
+        console.log(node?.children?.length > 0)
+        return node?.children?.length > 0
+    };
+    
 }
 
 

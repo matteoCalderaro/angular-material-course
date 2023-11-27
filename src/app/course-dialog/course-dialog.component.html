@@ -1,59 +1,55 @@
 
+<div class="edit-course-form">
 
+    <h1 mat-dialog-title>{{cacca.description}}</h1>
 
+    <div [formGroup]="form" mat-dialog-content class="mat-content">
 
+        <mat-form-field >
 
+            <input matInput placeholder="Course Description" formControlName="description">
 
-<!--
+        </mat-form-field>
 
-     <mat-form-field>
+        <mat-form-field>
 
-      <input matInput
-             placeholder="Course Description"
-             formControlName="description">
+            <mat-select placeholder="Select category">
 
-    </mat-form-field>
+                <mat-option value="BEGINNER">Beginner</mat-option>
+                <mat-option value="INTERMEDIATE">Intermediate</mat-option>
+                <mat-option value="ADVANCED">Advanced</mat-option>
 
-    <mat-form-field>
+            </mat-select>
 
-      <mat-select placeholder="Select category"
-                  formControlName="category">
+        </mat-form-field>
 
-        <mat-option value="BEGINNER">
-          Beginner</mat-option>
-        <mat-option value="INTERMEDIATE">
-          Intermediate</mat-option>
-        <mat-option value="ADVANCED">
-          Advanced</mat-option>
+        <mat-form-field>
 
-      </mat-select>
+            <input matInput [matDatepicker]="myDatepicker">
 
-    </mat-form-field>
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
 
-    <mat-form-field>
+            <mat-datepicker #myDatepicker></mat-datepicker>
 
-      <input matInput [matDatepicker]="myDatepicker"
-             formControlName="releasedAt">
+        </mat-form-field>
 
-      <mat-datepicker-toggle matSuffix
-                             [for]="myDatepicker">
+        <mat-form-field>
 
-      </mat-datepicker-toggle>
+            <textarea matInput placeholder="Description">
 
-      <mat-datepicker #myDatepicker></mat-datepicker>
+            </textarea>
 
-    </mat-form-field>
+        </mat-form-field>
 
-    <mat-form-field>
+    </div>
 
-        <textarea matInput placeholder="Description"
-                  formControlName="longDescription">
+    <div mat-dialog-actions class="dialog-actions">
+        <button mat-raised-button (click)="close()">Close</button>
+        <button mat-raised-button color="primary" cdkFocusInitial (click)="save()">Save</button>
+    </div>
 
-        </textarea>
-
-    </mat-form-field>
-
-
-
-
- -->
+</div>
+<!-- formControlName="description"
+formControlName="category"
+formControlName="releasedAt"
+formControlName="longDescription" -->
